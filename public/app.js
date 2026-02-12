@@ -11,6 +11,10 @@ const API_BASE_URL = `${window.location.protocol}//${window.location.host}/api`;
 async function fetchMessages() {
     try {
         const response = await fetch(`${API_BASE_URL}/messages`);
+         if(response.status == 401){
+      window.location.href = '/login.html';
+      return;
+    }
         const data = await response.json();
         if (data.status === 'success') {
             data.data.forEach(message => displayMessage(message));
