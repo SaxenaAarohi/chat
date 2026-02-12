@@ -15,7 +15,7 @@ export function checkToken(
 ): void {
   const token = req.cookies.token;
   if (!token) {
-    return res.redirect('/login.html');
+    res.status(401).json({ message: 'Unauthorized' })
   }
 
   try {
